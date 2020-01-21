@@ -10,7 +10,7 @@ import time
 # Script permettant de Faire un Export. Par Alain Singaye le 21/01/20 version 2.0
 
 # Permet de se rendre sur le site internet et d'effectuer le téléchargement en PDF
-download_dir = r"C:\Users\alain.singaye\Documents\GLPI"
+download_dir = r"C:\Paht\to\Your\Directory"
 chrome_options = webdriver.ChromeOptions()
 path = r'C:/bin/chromedriver.exe'
 preferences = {"download.default_directory": download_dir ,
@@ -20,11 +20,11 @@ preferences = {"download.default_directory": download_dir ,
                     }
 chrome_options.add_experimental_option("prefs", preferences)
 chrome = webdriver.Chrome(path, chrome_options=chrome_options)
-chrome.get("http://glpi.ad.kellydeli.net/glpi/index.php?noAUTO=1")
+chrome.get("your GlPI website")
 
 # Le script rentre les identifiant et les mots de passes
-chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys( "alain.singaye" )
-chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "H3XsBgueqV8yaRRM" )
+chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys( "your username" )
+chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "your password" )
 
 
 
