@@ -4,6 +4,13 @@ import time
 
 import logging
 
+#Fonction pour chercher le site internet
+def access_to_website(url):
+    chrome.get(url)
+
+
+
+
 # Ce sont les logger pour les logs
 logger = logging.getLogger('logs')
 logger.setLevel(logging.DEBUG)
@@ -21,10 +28,10 @@ ch.setFormatter(formatter)
 # Ajout ch du logger
 logger.addHandler(ch)
 
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 11/0/20 version 2.1
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.2
 
 # Le dossier dans lequel sera saugarder l'export.
-download_dir = r"C:\Users\usersname\Directory\GLPI"
+download_dir = r"C:\Users\username\Directory\GLPI"
 chrome_options = webdriver.ChromeOptions()
 path = r'C:/bin/chromedriver.exe'
 preferences = {"download.default_directory": download_dir ,
@@ -40,31 +47,31 @@ chrome = webdriver.Chrome(path, chrome_options=chrome_options)
 #Try et Except permet de recouvrir des erreurs
 try:
 
-    chrome.get("http://your glpi website")
+    access_to_website("your GLPI URL")
 
 except:
-    logger.error("connection to website unsuccessful")
-else:
+   print(logger.error("website unreachable"))
+
+finally:
     logger.info("connection was successful")
 
 # Le script rentre les identifiant et les mots de passes
 
-try:
+chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys("username" )
+chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "password" )
 
-    chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys( "login_name" )
-    chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "password" )
-
-except:
-
-    logger.error('problem while logging in')
-
-else:
-
-    logger.info('logged in')
 
 # Clique sur le bouton
 submit_button = chrome.find_element_by_xpath('//input[@type="submit"]')
 submit_button.click()
+
+try:
+    chrome.find_element_by_xpath('//*[@id="c_ssmenu2"]/ul/li[1]/a')
+except:
+    logger.error('not logged in')
+
+else:
+    logger.info('logged in')
 
 #Cliquez sur ordinateurs
 
@@ -75,15 +82,18 @@ submit_button.click()
 time.sleep(2)
 
 # Permet à l'utilisateur de faire un choix sur son Export
-choix = input("Que voulez vous executer, Ordinateur ou Téléphones?")
+choix = input("Que voulez vous executer, Ordinateurs ou Téléphones?")
+
+#try:
 
 try:
 
-    if choix == 'Ordinateur':
+    if choix == 'Ordinateurs':
 
         submit_button = chrome.find_element_by_xpath("//a[contains(text(),'Ordinateurs')]")
         submit_button.click()
-
+        submit_button = chrome.find_element_by_xpath('//input[@name="export"]')
+        submit_button.click()
 except:
 
    logger.error('Export unsuccessful')
@@ -101,6 +111,10 @@ try:
             submit_button = chrome.find_element_by_xpath('//*[@id="show_all_menu"]/table[1]/tbody/tr[10]/td/a')
             submit_button.click()
 
+#Cliquez sur le bouton export
+            submit_button = chrome.find_element_by_xpath('//input[@name="export"]')
+            submit_button.click()
+
 except:
 
     logger.error('Export unsuccessful ')
@@ -109,9 +123,6 @@ else:
 
     logger.info('Export was successful')
 
-#Cliquez sur le bouton export
-submit_button = chrome.find_element_by_xpath('//input[@name="export"]')
-submit_button.click()
 
 
 
