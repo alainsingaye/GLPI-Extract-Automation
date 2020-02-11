@@ -24,7 +24,7 @@ logger.addHandler(ch)
 # Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 11/0/20 version 2.1
 
 # Le dossier dans lequel sera saugarder l'export.
-download_dir = r"C:\Users\alain.singaye\Documents\GLPI"
+download_dir = r"C:\Users\usersname\Directory\GLPI"
 chrome_options = webdriver.ChromeOptions()
 path = r'C:/bin/chromedriver.exe'
 preferences = {"download.default_directory": download_dir ,
