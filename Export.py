@@ -1,3 +1,5 @@
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.2
+
 from selenium import webdriver
 
 import time
@@ -27,8 +29,6 @@ ch.setFormatter(formatter)
 
 # Ajout ch du logger
 logger.addHandler(ch)
-
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.2
 
 # Le dossier dans lequel sera saugarder l'export.
 download_dir = r"C:\Users\username\Directory\GLPI"
