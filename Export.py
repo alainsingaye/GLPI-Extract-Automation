@@ -40,7 +40,7 @@ chrome = webdriver.Chrome(path, chrome_options=chrome_options)
 #Try et Except permet de recouvrir des erreurs
 try:
 
-    chrome.get("http://glpi.ad.kellydeli.net/glpi/index.php?noAUTO=1")
+    chrome.get("http://your glpi website")
 
 except:
     logger.error("connection to website unsuccessful")
@@ -51,8 +51,8 @@ else:
 
 try:
 
-    chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys( "alain.singaye" )
-    chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "H3XsBgueqV8yaRRM" )
+    chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys( "login_name" )
+    chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "password" )
 
 except:
 
