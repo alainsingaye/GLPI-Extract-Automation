@@ -1,4 +1,4 @@
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.2
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.3
 
 from selenium import webdriver
 
@@ -31,7 +31,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 # Le dossier dans lequel sera saugarder l'export.
-download_dir = r"C:\Users\username\Directory\GLPI"
+download_dir = r"C:\Users\username\Directory\Filename"
 chrome_options = webdriver.ChromeOptions()
 path = r'C:/bin/chromedriver.exe'
 preferences = {"download.default_directory": download_dir ,
@@ -47,12 +47,12 @@ chrome = webdriver.Chrome(path, chrome_options=chrome_options)
 #Try et Except permet de recouvrir des erreurs
 try:
 
-    access_to_website("your GLPI URL")
+    access_to_website("your GLPI site")
 
 except:
    print(logger.error("website unreachable"))
 
-finally:
+else:
     logger.info("connection was successful")
 
 # Le script rentre les identifiant et les mots de passes
@@ -87,44 +87,26 @@ choix = input("Que voulez vous executer, Ordinateurs ou Téléphones?")
 #try:
 
 try:
-
     if choix == 'Ordinateurs':
-
-        submit_button = chrome.find_element_by_xpath("//a[contains(text(),'Ordinateurs')]")
-        submit_button.click()
-        submit_button = chrome.find_element_by_xpath('//input[@name="export"]')
-        submit_button.click()
-except:
-
-   logger.error('Export unsuccessful')
-
-else:
-    logger.info('Export successful')
-
-try:
-
-    if choix == 'Téléphones':
-
-
-
-
+            submit_button = chrome.find_element_by_xpath("//a[contains(text(),'Ordinateurs')]")
+            submit_button.click()
+            submit_button = chrome.find_element_by_xpath('//input[@name="export"]')
+            submit_button.click()
+    elif choix == 'Téléphones':
             submit_button = chrome.find_element_by_xpath('//*[@id="show_all_menu"]/table[1]/tbody/tr[10]/td/a')
             submit_button.click()
 
-#Cliquez sur le bouton export
+            #Cliquez sur le bouton export
             submit_button = chrome.find_element_by_xpath('//input[@name="export"]')
             submit_button.click()
 
-except:
 
-    logger.error('Export unsuccessful ')
+except Exception as exception:
+   logger.error('Export unsuccessful')
+   logger.error(exception)
 
 else:
-
-    logger.info('Export was successful')
-
-
-
+    logger.info('Export Successful')
 
 
 
