@@ -1,4 +1,4 @@
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.3
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.4
 
 from selenium import webdriver
 
@@ -9,6 +9,12 @@ import logging
 #Fonction pour chercher le site internet
 def access_to_website(url):
     chrome.get(url)
+    
+logging.basicConfig(filename= r"C://your//directory//path//filename.txt",
+                    format= '%(asctime)s  - %(levelname)s - %(message)s',
+                    datefmt= '%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG
+                    )
+
 
 
 
