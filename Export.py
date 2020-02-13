@@ -37,11 +37,7 @@ ch.setFormatter(formatter)
 # Ajout ch du logger
 logger.addHandler(ch)
 
-rotatingHandler = logging.handlers.RotatingFileHandler(filename=r"path", maxBytes=1000, backupCount=5)
-rotatingHandler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-rotatingHandler.setFormatter(formatter)
-logging.getLogger('name').addHandler(rotatingHandler)
+
 
 # Le dossier dans lequel sera saugarder l'export.
 download_dir = r"C:\Users\username\Directory\Filename"
