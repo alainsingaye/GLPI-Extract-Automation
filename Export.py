@@ -9,7 +9,8 @@ import logging
 #Fonction pour chercher le site internet
 def access_to_website(url):
     chrome.get(url)
-    
+
+# Permet d'enregistrer les logs dans un fichier
 logging.basicConfig(filename= r"C://your//directory//path//filename.txt",
                     format= '%(asctime)s  - %(levelname)s - %(message)s',
                     datefmt= '%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG
