@@ -1,4 +1,4 @@
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.4
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.5
 
 from selenium import webdriver
 
@@ -21,7 +21,7 @@ logging.basicConfig(filename= r"C://your//directory//path//filename.txt",
 
 
 # Ce sont les logger pour les logs
-logger = logging.getLogger('logs')
+logger = logging.getLogger('name')
 logger.setLevel(logging.DEBUG)
 
 # C'est la console handler and le niveau pour le debug
@@ -36,6 +36,12 @@ ch.setFormatter(formatter)
 
 # Ajout ch du logger
 logger.addHandler(ch)
+
+rotatingHandler = logging.handlers.RotatingFileHandler(filename=r"path", maxBytes=1000, backupCount=5)
+rotatingHandler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+rotatingHandler.setFormatter(formatter)
+logging.getLogger('name').addHandler(rotatingHandler)
 
 # Le dossier dans lequel sera saugarder l'export.
 download_dir = r"C:\Users\username\Directory\Filename"
