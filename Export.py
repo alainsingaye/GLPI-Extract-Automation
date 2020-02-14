@@ -9,9 +9,6 @@ import logging
 #Pour la rotation des Logs
 from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 
-path = r"C://Users//alain.singaye//Documents//GLPI//Logs"
-
-
 
 #Fonction pour chercher le site internet
 def access_to_website(url):
