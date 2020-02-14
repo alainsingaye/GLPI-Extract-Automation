@@ -23,3 +23,4 @@ Pour les imports utilisé :
 - Import Selenium
 - Import Time
 - Import logging
+- from logging.handlers import RotatingFileHandler
