@@ -1,4 +1,4 @@
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.5
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.6
 
 from selenium import webdriver
 
@@ -6,23 +6,43 @@ import time
 
 import logging
 
+#Pour la rotation des Logs
+from logging.handlers import RotatingFileHandler
+
+path = r"C:\Users\alain.singaye\Documents\GLPI\Logs"
+
+#Cette fonction permet la gestion de la rotation des logs
+def create_rotating_log(path):
+
+    logger = logging.getLogger("Rotating Log")
+    logger.setLevel(logging.INFO)
+
+    # add a rotating handler
+    handler = RotatingFileHandler(path, maxBytes=20,
+                                  backupCount=5)
+    logger.addHandler(handler)
+
+
 #Fonction pour chercher le site internet
 def access_to_website(url):
     chrome.get(url)
 
+
+
 # Permet d'enregistrer les logs dans un fichier
-logging.basicConfig(filename= r"C://your//directory//path//filename.txt",
+logging.basicConfig(filename= r"C://Users//alain.singaye//Documents//GLPI//Logs//log.txt",
                     format= '%(asctime)s  - %(levelname)s - %(message)s',
                     datefmt= '%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG
-                    )
+                     )
 
 
 
 
 
 # Ce sont les logger pour les logs
-logger = logging.getLogger('name')
+logger = logging.getLogger('logs')
 logger.setLevel(logging.DEBUG)
+
 
 # C'est la console handler and le niveau pour le debug
 ch = logging.StreamHandler()
@@ -39,8 +59,9 @@ logger.addHandler(ch)
 
 
 
+
 # Le dossier dans lequel sera saugarder l'export.
-download_dir = r"C:\Users\username\Directory\Filename"
+download_dir = r"C:\Users\alain.singaye\Documents\GLPI"
 chrome_options = webdriver.ChromeOptions()
 path = r'C:/bin/chromedriver.exe'
 preferences = {"download.default_directory": download_dir ,
@@ -56,18 +77,19 @@ chrome = webdriver.Chrome(path, chrome_options=chrome_options)
 #Try et Except permet de recouvrir des erreurs
 try:
 
-    access_to_website("your GLPI site")
+    access_to_website("http://glpi.ad.kellydeli.net/glpi/index.php?noAUTO=1")
 
 except:
-   print(logger.error("website unreachable"))
+   logger.error("website unreachable")
+
 
 else:
     logger.info("connection was successful")
 
 # Le script rentre les identifiant et les mots de passes
 
-chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys("username" )
-chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys( "password" )
+chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys("alain.singaye")
+chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys("H3XsBgueqV8yaRRM")
 
 
 # Clique sur le bouton
