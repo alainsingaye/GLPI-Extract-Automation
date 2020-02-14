@@ -1,4 +1,4 @@
-# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.6
+# Script permettant de Faire un Export de la base de GLPI des ordinateurs. Par Alain Singaye le 21/01/20 version 2.7
 
 from selenium import webdriver
 
@@ -7,20 +7,10 @@ import time
 import logging
 
 #Pour la rotation des Logs
-from logging.handlers import RotatingFileHandler
+from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 
-path = r"C:\Users\alain.singaye\Documents\GLPI\Logs"
+path = r"C://Users//alain.singaye//Documents//GLPI//Logs"
 
-#Cette fonction permet la gestion de la rotation des logs
-def create_rotating_log(path):
-
-    logger = logging.getLogger("Rotating Log")
-    logger.setLevel(logging.INFO)
-
-    # add a rotating handler
-    handler = RotatingFileHandler(path, maxBytes=20,
-                                  backupCount=5)
-    logger.addHandler(handler)
 
 
 #Fonction pour chercher le site internet
@@ -29,35 +19,16 @@ def access_to_website(url):
 
 
 
-# Permet d'enregistrer les logs dans un fichier
-logging.basicConfig(filename= r"C://Users//alain.singaye//Documents//GLPI//Logs//log.txt",
-                    format= '%(asctime)s  - %(levelname)s - %(message)s',
-                    datefmt= '%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG
-                     )
 
 
+# Permet d'enregistrer les logs dans un fichier et de faire La rotation
 
-
-
-# Ce sont les logger pour les logs
-logger = logging.getLogger('logs')
-logger.setLevel(logging.DEBUG)
-
-
-# C'est la console handler and le niveau pour le debug
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-
-# Le formatter
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-# L'ajout du formatter to ch
-ch.setFormatter(formatter)
-
-# Ajout ch du logger
-logger.addHandler(ch)
-
-
+rotation_handler = TimedRotatingFileHandler(filename=r"C://Users//alain.singaye//Documents//GLPI//Logs//log.txt", when='M', interval=3)
+rotation_handler.setFormatter(formatter)
+logger = logging.getLogger()
+logger.addHandler(rotation_handler)
+logger.setLevel(logging.DEBUG)
 
 
 # Le dossier dans lequel sera saugarder l'export.
