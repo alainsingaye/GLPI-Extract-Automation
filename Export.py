@@ -21,7 +21,7 @@ def access_to_website(url):
 # Permet d'enregistrer les logs dans un fichier et de faire La rotation
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-rotation_handler = TimedRotatingFileHandler(filename=r"C://Users//alain.singaye//Documents//GLPI//Logs//log.txt", when='M', interval=3)
+rotation_handler = TimedRotatingFileHandler(filename=r"C://your//directory//path//", when='H', interval=3)
 rotation_handler.setFormatter(formatter)
 logger = logging.getLogger()
 logger.addHandler(rotation_handler)
@@ -45,7 +45,7 @@ chrome = webdriver.Chrome(path, chrome_options=chrome_options)
 #Try et Except permet de recouvrir des erreurs
 try:
 
-    access_to_website("http://glpi.ad.kellydeli.net/glpi/index.php?noAUTO=1")
+    access_to_website("Your GLPI Website")
 
 except:
    logger.error("website unreachable")
@@ -56,8 +56,8 @@ else:
 
 # Le script rentre les identifiant et les mots de passes
 
-chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys("alain.singaye")
-chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys("H3XsBgueqV8yaRRM")
+chrome.find_element_by_xpath("//input[@id = 'login_name']").send_keys("login")
+chrome.find_element_by_xpath("//input[@id = 'login_password']").send_keys("password")
 
 
 # Clique sur le bouton
@@ -93,6 +93,12 @@ try:
             submit_button.click()
     elif choix == 'Téléphones':
             submit_button = chrome.find_element_by_xpath('//*[@id="show_all_menu"]/table[1]/tbody/tr[10]/td/a')
+            submit_button.click()
+    elif choix == 'Logiciels':
+            submit_button = chrome.find_element_by_xpath('//*[@id="show_all_menu"]/table[1]/tbody/tr[4]/td/a')
+            submit_button.click()
+    elif choix == 'Périphériques':
+            submit_button = chrome.find_element_by_xpath('//*[@id="show_all_menu"]/table[1]/tbody/tr[6]/td/a')
             submit_button.click()
 
             #Cliquez sur le bouton export
