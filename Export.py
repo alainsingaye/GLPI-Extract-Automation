@@ -33,7 +33,7 @@ from email.mime.text import MIMEText
 # Permet d'enregistrer les logs dans un fichier et de faire La rotation
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-rotation_handler = TimedRotatingFileHandler(filename=r"C://Users//alain.singaye//Documents//GLPI//Logs//log.txt", when='M', interval=3)
+rotation_handler = TimedRotatingFileHandler(filename=r"C://Users//alain.singaye//Documents//GLPI//Logs//log.txt", when='H', interval=5)
 rotation_handler.setFormatter(formatter)
 logger = logging.getLogger()
 logger.addHandler(rotation_handler)
