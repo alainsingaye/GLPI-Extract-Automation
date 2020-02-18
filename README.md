@@ -23,4 +23,9 @@ Pour les imports utilisé :
 - Import Selenium
 - Import Time
 - Import logging
+- Import smtplib, ssl
 - from logging.handlers import RotatingFileHandler
+- from email import encoders
+- from email.mime.base import MIMEBase
+- from email.mime.multipart import MIMEMultipart
+- from email.mime.text import MIMEText
