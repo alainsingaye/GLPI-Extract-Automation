@@ -128,20 +128,20 @@ except Exception as exception:
 else:
     logger.info('Export Successful')
 
+#Pour l'envoi du mail de confirmation.
+try:
+    subject = "An email with attachment from Python"
+    body = "This is an email with attachment sent from Python"
+    sender_email = "mail de l'expéditeur"
+    receiver_email = "mail du destinataire"
+    password = input("Entrez votre mot de passe et appuyez sur entrée:")
 
+except Exception as exception:
+   logger.error('Email was not sent')
+   logger.error(exception)
 
-subject = "An email with attachment from Python"
-body = "This is an email with attachment sent from Python"
-sender_email = "votre email"
-receiver_email = "email du destinataire"
-password = input("Entrez votre mot de passe et appuyez sur entrée:")
-
-# Permet le multipart du mail
-message = MIMEMultipart()
-message["From"] = sender_email
-message["To"] = receiver_email
-message["Subject"] = subject
-message["Bcc"] = receiver_email  # Recommander pour les mails en masses.
+else:
+    logger.info('Email was sent')
 
 # Ajoute un corps au mail
 message.attach(MIMEText("Tapez,\r\n \r\votre, \r\n \r\n texte"))
