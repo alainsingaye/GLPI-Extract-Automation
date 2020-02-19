@@ -24,6 +24,8 @@ Pour les imports utilisé :
 - Import Time
 - Import logging
 - Import smtplib, ssl
+- Import os
+- Import shutil
 - from logging.handlers import RotatingFileHandler
 - from email import encoders
 - from email.mime.base import MIMEBase
