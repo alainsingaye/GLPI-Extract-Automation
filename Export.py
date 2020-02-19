@@ -7,6 +7,12 @@ import smtplib, ssl
 
 from email.message import EmailMessage
 
+# Permet d'interagir avec l'os Windows
+import os
+
+#Permet de copier ou d'éffacer un fichier, dossiers
+import shutil
+
 #Pour mettre du temps entre les executation des tâches
 import time
 
