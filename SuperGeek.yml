@@ -257,7 +257,7 @@ Resources:
           sudo service docker start
           sudo systemctl enable --now docker
           sudo usermod -a -G docker ec2-user
-          sudo docker run -d --name wordpress -e WORDPRESS_DB_HOST=dbinstance.eu-west.rds.amazonaws.com -e WORDPRESS_DB_USER=admin -e WORDPRESS_DB_PASSWORD=DBPassword -e WORDPRESS_DB_NAME=wordpress -p 80:80 -d wordpress
+          sudo docker run -d --name wordpress -e WORDPRESS_DB_HOST=dbinstance.Endpoint.Address -e WORDPRESS_DB_USER=admin -e WORDPRESS_DB_PASSWORD=DBPassword -e WORDPRESS_DB_NAME=wordpress -p 80:80 -d wordpress
           curl http://localhost/
           
 
